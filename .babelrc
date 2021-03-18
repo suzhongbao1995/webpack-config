@@ -1,0 +1,37 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "safari": "11.1"
+        },
+        "useBuiltIns": "usage",
+        "corejs": {
+          "version": 3
+        }
+      }
+    ],
+    "@babel/preset-react"
+  ],
+  "plugins": [
+    "react-hot-loader/babel",
+    "@babel/plugin-proposal-optional-chaining",
+    [
+      "@babel/plugin-transform-runtime",
+      {
+        "corejs": {
+          "version": 3
+        }
+      }
+    ],
+    [
+      "@babel/plugin-proposal-decorators",
+      {
+        "legacy": true
+      }
+    ],
+    "@babel/plugin-proposal-class-properties"
+  ]
+}
+
