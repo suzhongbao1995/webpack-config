@@ -2,10 +2,11 @@
 
 module.exports = {
     extends: ['airbnb', 'prettier', 'plugin:eslint-comments/recommended', 'prettier/react'],
-    plugins: ['eslint-comments', 'unicorn', 'react-hooks', 'react'],
-    parser: 'babel-eslint',
+    plugins: ['@typescript-eslint','eslint-comments', 'unicorn', 'react-hooks', 'react'],
+    parser: '@typescript-eslint/parser',
     env: {
         browser: true,
+        node: true,
     },
     rules: {
         'no-restricted-syntax': 0,
@@ -74,6 +75,11 @@ module.exports = {
         'jsx-a11y/label-has-for': 0,
         'camelcase': 1,
         'no-underscore-dangle': 0,
+        "import/extensions": [2, "ignorePackages"],
+        "import/no-unresolved": [2,
+            {
+                "ignore": ["@", "@SDVariableJS","@SDVariable","@components", "@constants", "@services", "@assets", "@helpers", "@config", "@utils"]
+            }]
     },
     settings: {
         // support import modules from TypeScript files in JavaScript files
@@ -109,5 +115,15 @@ module.exports = {
             {"property": "myFavoriteWrapper"}
         ],
         polyfills: ['fetch', 'Promise', 'URL', 'object-assign'],
+    },
+    parserOptions: {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "jsx": true,
+        "useJSXTextNode": true,
+        "project": "./tsconfig.json",
+        "tsconfigRootDir": "./",
+        "extraFileExtensions": [".ts", ".tsx"]
     },
 };
