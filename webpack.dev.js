@@ -1,12 +1,9 @@
-"use strict";
-
 
 const { join } = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const webpack = require('webpack')
-const common = require('./webpack.common')
-const { merge } = require('webpack-merge')
+
  const config = {
     mode: "development",
     devtool: 'eval',
@@ -117,4 +114,4 @@ const { merge } = require('webpack-merge')
         quiet: true //除了一些基本信息外，其他内容都不要显示
     }
 };
-module.exports = merge(common, config)
+module.exports = config
