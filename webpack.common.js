@@ -3,11 +3,6 @@ const { join } = require('path')
 const WebpackBar = require('webpackbar')
 
 module.exports = {
-    entry: "./src/index.js",
-    output: {
-        path: join(__dirname, "./dist"),
-        filename: "js/[name].[contentHash:4].bundle.js"
-    },
     plugins: [
         new WebpackBar()
     ],
@@ -27,7 +22,4 @@ module.exports = {
         mainFiles: ["index"],
         modules: [join(__dirname, "src"), "node_modules"]
     },
-    externals: {
-        jquery: "Jquery"
-    }
 };

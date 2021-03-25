@@ -1,24 +1,24 @@
-
 const { join } = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const RemoveConsolePlugin = require('./remove-console.plugin');
 const webpack = require('webpack')
-
- const config = {
+const common = require('./webpack.common')
+const { merge } = require('webpack-merge')
+const config = {
     mode: "development",
     devtool: 'eval',
-    entry: ["./src/index.js", "./public/index.html"],
-    output: {
-        path: join(__dirname, "./dist"),
-        filename: "[name].bundle.js"
-    },
+    // entry: ["./src/index.js", "./public/index.html"],
+    // output: {
+    //     path: join(__dirname, "./dist"),
+    //     filename: "[name].bundle.js"
+    // },
     module: {
         rules: [
             {
                 test: /\.(js|jsx)$/,
-                use: {
-                    loader: "babel-loader"
-                }
+                use: ['babel-loader'],
+                exclude: /node_modules/,
             },
             {
                 test: [/\.css$/, /\.less$/],
@@ -103,15 +103,16 @@ const webpack = require('webpack')
                 inject: "body"
             }
         ),
+        new RemoveConsolePlugin(),
         new webpack.HotModuleReplacementPlugin(),
     ],
     devServer: {
         port: 8888,
         hot: true,
         open: true,
-        contentBase: "./",
-        clientLogLevel: 'none', //去掉控制台日志信息
-        quiet: true //除了一些基本信息外，其他内容都不要显示
+        // contentBase: "./",
+        // clientLogLevel: 'none', //去掉控制台日志信息
+        // quiet: true //除了一些基本信息外，其他内容都不要显示
     }
 };
-module.exports = config
+module.exports = merge(common, config)
