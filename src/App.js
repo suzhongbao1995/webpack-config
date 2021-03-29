@@ -1,8 +1,8 @@
 import React from 'react';
-import Test from '@pages/Test.jsx'
+import Msg from '@pages/Msg'
 
 function App() {
-  return <Test name={'22222'}/>
+  return <Msg/>
 }
 
 export default App

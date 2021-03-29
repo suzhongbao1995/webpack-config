@@ -1,18 +1,16 @@
 const { join } = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const RemoveConsolePlugin = require('./remove-console.plugin');
+const DemoPlugin = require('./plugins/demo-plugin');
 const webpack = require('webpack')
 const common = require('./webpack.common')
 const { merge } = require('webpack-merge')
 const config = {
     mode: "development",
-    devtool: 'eval',
-    // entry: ["./src/index.js", "./public/index.html"],
-    // output: {
-    //     path: join(__dirname, "./dist"),
-    //     filename: "[name].bundle.js"
-    // },
+    // devtool: 'eval',
+    resolveLoader: {
+        modules: ['node_modules', './loader'], // node_modules找不到，就去./src/loaders找
+    },
     module: {
         rules: [
             {
@@ -91,6 +89,15 @@ const config = {
             {
                 test: /\.html$/,
                 loader: 'html-loader'
+            },
+            {
+                test: /\.js$/,
+                use: {
+                    loader: 'replace-loader',
+                    options: {
+                        message: '加薪'
+                    }
+                }
             }
         ]
     },
@@ -110,9 +117,9 @@ const config = {
         port: 8888,
         hot: true,
         open: true,
-        // contentBase: "./",
-        // clientLogLevel: 'none', //去掉控制台日志信息
-        // quiet: true //除了一些基本信息外，其他内容都不要显示
+        contentBase: "./",
+        clientLogLevel: 'none', //去掉控制台日志信息
+        quiet: true //除了一些基本信息外，其他内容都不要显示
     }
 };
 module.exports = merge(common, config)

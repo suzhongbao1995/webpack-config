@@ -3,16 +3,15 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const OptimizeCssAssetsWebpackPlugin = require("optimize-css-assets-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-// const SpeedMeasurePlugin = require('speed-measure-webpack-plugin')
-// const Smp = new SpeedMeasurePlugin();
 const WorkboxWebpackPlugin = require("workbox-webpack-plugin");
+const DemoPlugin = require('./plugins/demo-plugin');
 const common = require("./webpack.common");
 const { merge } = require("webpack-merge");
 
 process.env.NODE_ENV = "production";
 
 const config = {
-    mode: "production",
+    mode: "development",
     optimization: {
         splitChunks: {
             chunks: "all",
@@ -30,22 +29,6 @@ const config = {
     },
     module: {
         rules: [
-            //eslint
-            {
-                test: /\.(js|jsx)$/,
-                exclude: /node_modules/,
-                enforce: "pre",
-                use: [
-                    {
-                        loader: "eslint-loader",
-                        options: {
-                            fixed: true
-                        }
-                    }
-                ]
-            },
-            {
-                oneOf: [
                     {
                         test: /\.(js|jsx)$/,
                         include: join(__dirname, "src"),
@@ -162,9 +145,6 @@ const config = {
                         include: join(__dirname, "src"),
                         loader: "html-loader"
                     }
-                ]
-
-            }
         ]
     },
     plugins: [
@@ -186,6 +166,7 @@ const config = {
             }
         ),
         new OptimizeCssAssetsWebpackPlugin(),
+        new DemoPlugin(),
         new WorkboxWebpackPlugin.GenerateSW({
             clientsClaim: true,
             skipWaiting: true

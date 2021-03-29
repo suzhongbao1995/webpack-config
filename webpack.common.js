@@ -1,11 +1,11 @@
 
 const { join } = require('path')
-const WebpackBar = require('webpackbar')
+// const WebpackBar = require('webpackbar')
 
 module.exports = {
-    plugins: [
-        new WebpackBar()
-    ],
+    // plugins: [
+    //     new WebpackBar()
+    // ],
     resolve: {
         alias: {
             "@": join(__dirname, "./src"),
@@ -19,7 +19,7 @@ module.exports = {
             "@utils": join(__dirname, "./src/utils")
         },
         extensions: [".json", ".js", ".jsx", ".ts", ".tsx", ".css", ".less", "scss", ".styl"],
-        mainFiles: ["index"],
-        modules: [join(__dirname, "src"), "node_modules"]
+        // mainFiles: ["index"],
+        // modules: [join(__dirname, "src"), "node_modules"]
     },
 };
