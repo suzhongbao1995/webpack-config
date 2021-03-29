@@ -34,5 +34,8 @@
       { "name": "typescript-tslint-plugin" }
     ]
   },
-  "exclude": ["node_modules", "dist", "tslint-config-prettier"]
+  "exclude": ["node_modules", "dist", "tslint-config-prettier"],
+  "include": [
+    "./src/**/*.tsx"
+  ]
 }

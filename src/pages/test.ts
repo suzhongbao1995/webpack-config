@@ -34,7 +34,10 @@ type Info = {
 // declare function overload(info: Info): string;
 // declare function overload(info: string, flag: boolean): string;
 // const res = overload({ name: 'suzhongbao', age: 24 }, true)
-
+declare function test(params: string): string;
+declare function test(params: number): number;
+const resStr1 = test('Hello World')
+const resNum2 = test('123');
 
 // const name = {};
 // name.chinaName = '苏忠宝';
@@ -75,3 +78,13 @@ const add: (x: number, y:number) => string = function(x: number, y: number): str
 
 const addTest: <T, U>(x:T, y:U) => string = fx;
 addTest<number, number>(2, 3);
+
+const identity1: (arg: number) => number = (arg: number): number =>  arg;
+const identity2: (arg: string) => string = (arg: string): string => arg;
+
+const identity = <T>(arg: T):T => arg;
+
+
+
+
+
