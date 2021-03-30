@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import App from './App'
+import Pages from '@page/index.tsx';
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         navigator.serviceWorker.register('./service-worker.js').then(registration => {
@@ -11,4 +11,4 @@ if ('serviceWorker' in navigator) {
     });
 }
 
-ReactDom.render(<App/>, document.getElementById('root'))
+ReactDom.render(<Pages />, document.getElementById('root'))
