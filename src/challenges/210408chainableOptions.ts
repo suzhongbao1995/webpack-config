@@ -49,13 +49,13 @@ type Chainable<O = {}> = {
 /* _____________ Test Cases _____________ */
 import { Alike, Expect } from '@type-challenges/utils'
 
-declare const a: Chainable
+declare const a: Chainable;
 
 const result = a
   .option('foo', 123)
   .option('bar', { value: 'Hello World' })
   .option('name', 'type-challenges')
-  .get()
+  .get();
 
 type cases = [
   Expect<Alike<typeof result, Expected>>
